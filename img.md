@@ -7,6 +7,7 @@ local UI = loadstring(game:HttpGet(("https://raw.githubusercontent.com/3345-c-a-
 
 local Window = UI:CreateWindow("-Window Name-")
 
+Window.UIAspect = 8
 local Tab = Window:NewTab("Tab - 1")
 local Tab2 = Window:NewTab("Tab - 2")
 local Tab3 = Window:NewTab("Tab - 3")
