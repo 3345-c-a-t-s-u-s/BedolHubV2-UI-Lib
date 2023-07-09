@@ -1,43 +1,22 @@
 --[[
-Lost in your mind, I wanna know
-Am I losin' my mind?
-Never let me go
-If this night is not forever
-At least we are together
-I know I'm not alone
-I know I'm not alone
-Anywhere, whenever
-Apart but still together
-I know I'm not alone
-I know I'm not alone
-I know I'm not alone
-I know I'm not alone
-Unconscious mind
-I'm wide awake
-Wanna feel one last time
-Take my pain away
-If this night is not forever
-At least we are together
-I know I'm not alone
-I know I'm not alone
-Anywhere, whenever
-Apart but still together
-I know I'm not alone
-I know I'm not alone
-I know I'm not alone
-I know I'm not alone
-I'm not alone
-I'm not alone
-I'm not alone (I know I'm not alone)
-I'm not alone
-I'm not alone
-I'm not alone (I know I'm not alone)
-]]
-
---[[
 DD
 
 Dsa Clomax
+
+
+฿฿฿฿฿฿฿฿		฿฿฿฿฿฿฿฿฿	฿฿฿฿	฿฿		฿฿฿฿฿	  ฿
+฿	   ฿ 	฿			฿	  ฿ 		฿	฿	  ฿
+฿	   ฿    ฿          	฿	  ฿		฿	฿	  ฿
+฿฿฿฿฿฿฿		฿฿฿฿฿฿฿฿฿	฿	  ฿		฿	฿	  ฿
+฿	   ฿		฿			฿	  ฿		฿	฿	  ฿
+฿	   ฿    ฿			฿	  ฿		฿	฿	  ฿
+฿฿฿฿฿฿฿		฿฿฿฿฿฿฿฿฿	฿฿฿฿	฿฿	 	 ฿฿฿		  ฿฿฿฿฿฿฿
+
+- [You Can't Obf this is Code] -
+
+   -- [UI Make By Bedol Hub] --
+   - Who Copy code and send msg "CAT SUS is not onwer of ui" = YOU DIED
+   - the spectre music
 ]]
 
 local SubObf : string = [[
@@ -195,8 +174,30 @@ function Create_Ripple(Parent : Frame)
 	game:GetService('Debris'):AddItem(ripple,2.2)
 end
 
+local function GShaodw(Parent : GuiObject)
+	local ImageLabel = Instance.new("ImageLabel")
+
+	ImageLabel.Parent = Parent
+	ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+	ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ImageLabel.BackgroundTransparency = 1.000
+	ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ImageLabel.BorderSizePixel = 0
+	ImageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+	ImageLabel.Size = UDim2.new(1.04999995, 0, 1.14999998, 0)
+	ImageLabel.Image = "rbxassetid://7912134082"
+	ImageLabel.ImageColor3 = Color3.fromRGB(0, 0, 0)
+	
+	ImageLabel.ZIndex = 7
+	
+	return ImageLabel
+end
 
 function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
+	if not WindowName then
+		warn(_G[SubObf])
+		WindowName = "Unknow Window [Name]"
+	end
 	local GWindow = {}
 	local TabCollections = {}
 	local ToggleKey = Enum.KeyCode.X
@@ -224,7 +225,9 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 	local ScrollingFrame = Instance.new("ScrollingFrame")
 	local UIListLayout = Instance.new("UIListLayout")
 	local UICorner_7 = Instance.new("UICorner")
-
+	
+	
+	GWindow.UIAspect = 6
 
 	UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		Services:CreateTween(ScrollingFrame,nil,{"CanvasSize",UDim2.new(0,0,0,UIListLayout.AbsoluteContentSize.Y + 10)}):Play()
@@ -621,7 +624,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 
 		function GTab:NewButton(ButtonName:string,callback:func)
 			callback = callback or function() end
-			local Button = Instance.new("Frame")
+			local Button = Instance.new("Frame") GShaodw(Button)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local TitleLabel = Instance.new("TextLabel")
@@ -640,7 +643,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Button.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = Button
-			UIAspectRatioConstraint.AspectRatio = 6.000
+			UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -704,7 +707,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 				['Toggle_Off'] = "rbxassetid://10002398990"
 			}
 
-			local Toggle = Instance.new("Frame")
+			local Toggle = Instance.new("Frame") GShaodw(Toggle)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local TitleLabel = Instance.new("TextLabel")
@@ -723,7 +726,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Toggle.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = Toggle
-			UIAspectRatioConstraint.AspectRatio = 6.000
+			UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -813,7 +816,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 		function GTab:NewTextBox(TextBoxName:string,Desction:string,callback:func)
 			callback = callback or function() end
 
-			local TextBox = Instance.new("Frame")
+			local TextBox = Instance.new("Frame") GShaodw(TextBox)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local TitleLabel = Instance.new("TextLabel")
@@ -830,7 +833,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			TextBox.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = TextBox
-			UIAspectRatioConstraint.AspectRatio = 6.000
+			UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -912,7 +915,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Min = Min or 1
 			Max = Max or 100
 
-			local Slider = Instance.new("Frame")
+			local Slider = Instance.new("Frame") GShaodw(Slider)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local TitleLabel = Instance.new("TextLabel")
@@ -931,7 +934,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Slider.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = Slider
-			UIAspectRatioConstraint.AspectRatio = 4.500
+			UIAspectRatioConstraint.AspectRatio = (GWindow.UIAspect - 1.55) or 4.500
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -1054,7 +1057,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 				end
 			end
 
-			local Keybinds = Instance.new("Frame")
+			local Keybinds = Instance.new("Frame") GShaodw(Keybinds)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local TitleLabel = Instance.new("TextLabel")
@@ -1073,7 +1076,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Keybinds.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = Keybinds
-			UIAspectRatioConstraint.AspectRatio = 6.000
+			UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -1161,7 +1164,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			callback = callback or function() end
 			Data = Data or {}
 			local TogleValue = false
-			local Dropdown = Instance.new("Frame")
+			local Dropdown = Instance.new("Frame") GShaodw(Dropdown)
 			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 			local UICorner = Instance.new("UICorner")
 			local Frame = Instance.new("Frame")
@@ -1192,7 +1195,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Dropdown.ZIndex = 8
 
 			UIAspectRatioConstraint.Parent = Dropdown
-			UIAspectRatioConstraint.AspectRatio = 6.000
+			UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 			UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 			UICorner.CornerRadius = UDim.new(0, 3)
@@ -1205,6 +1208,8 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 			Frame.BorderSizePixel = 0
 			Frame.Size = UDim2.new(1, 0, 1, 0)
 			Frame.ZIndex = 8
+			Frame.AnchorPoint = Vector2.new(0.5,0)
+			Frame.Position = UDim2.new(0.5,0,0,0)
 
 			UIAspectRatioConstraint_2.Parent = Frame
 			UIAspectRatioConstraint_2.AspectRatio = 6.000
@@ -1297,7 +1302,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 				Button.TextXAlignment = Enum.TextXAlignment.Left
 
 				UIAspectRatioConstraint.Parent = Button
-				UIAspectRatioConstraint.AspectRatio = 6.000
+				UIAspectRatioConstraint.AspectRatio = GWindow.UIAspect
 				UIAspectRatioConstraint.AspectType = Enum.AspectType.ScaleWithParentSize
 
 				UICorner.CornerRadius = UDim.new(0, 4)
@@ -1342,7 +1347,7 @@ function BEDOL_HUB_HUI:CreateWindow(WindowName:string)
 					Services:CreateTween(UIAspectRatioConstraint,TweenInfo.new(0.14,Enum.EasingStyle.Quint),{"AspectRatio",1.5}):Play()
 				else
 					ScrollingFrame.Visible = false
-					Services:CreateTween(UIAspectRatioConstraint,TweenInfo.new(0.14,Enum.EasingStyle.Quint),{"AspectRatio",6}):Play()
+					Services:CreateTween(UIAspectRatioConstraint,TweenInfo.new(0.14,Enum.EasingStyle.Quint),{"AspectRatio",GWindow.UIAspect or 6}):Play()
 				end
 			end
 
